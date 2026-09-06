@@ -1,0 +1,15 @@
+export type DemoPost = { id:string; user:string; name:string; caption:string; location:string; image:string };
+export const posts: DemoPost[] = [
+{id:"ski",user:"noah.alpine",name:"Noah",location:"Palisades Tahoe",caption:"First light, fresh tracks, and a whole mountain ahead.",image:"https://images.unsplash.com/photo-1486911278844-a81c5267e227?auto=format&fit=crop&w=1000&q=85"},
+{id:"grandpa",user:"maya.chen",name:"Maya",location:"Home",caption:"My grandfather passed away last night. I already miss him more than I can put into words. Rest easy, Grandpa.",image:"https://images.unsplash.com/photo-1508963493744-76fce69379c0?auto=format&fit=crop&w=1000&q=85"},
+{id:"graduation",user:"lena.s",name:"Lena",location:"Berkeley, California",caption:"Graduated today! Still taking it all in.",image:"https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1000&q=85"},
+{id:"gpa",user:"eli.codes",name:"Eli",location:"Library",caption:"RIP my GPA after that calculus exam 💀",image:"https://images.unsplash.com/photo-1456324504439-367cee3b3c32?auto=format&fit=crop&w=1000&q=85"},
+{id:"mom",user:"sophie.w",name:"Sophie",location:"Portland, Oregon",caption:"Three years without Mom today. Thinking about her laugh and everything she taught me. I miss her every day.",image:"https://images.unsplash.com/photo-1490730141103-6cac27aaab94?auto=format&fit=crop&w=1000&q=85"},
+{id:"dog",user:"ben.and.max",name:"Ben",location:"Our favorite trail",caption:"We lost Max this morning after 14 amazing years. Best dog I could have asked for.",image:"https://images.unsplash.com/photo-1507146426996-ef05306b995a?auto=format&fit=crop&w=1000&q=85"},
+{id:"food",user:"nia.eats",name:"Nia",location:"Oakland, California",caption:"The pasta alone was worth the drive.",image:"https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=1000&q=85"},
+{id:"phone",user:"sam.outside",name:"Sam",location:"Desolation Wilderness",caption:"My phone died halfway through the hike. Honestly, perfect timing.",image:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1000&q=85"},
+{id:"friends",user:"zoe.m",name:"Zoe",location:"San Francisco",caption:"The people who make this city feel like home.",image:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=85"},
+{id:"movie",user:"filmbyalex",name:"Alex",location:"Cinema club",caption:"Tony Stark's death still gets me every time.",image:"https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1000&q=85"},
+{id:"coding",user:"devon.builds",name:"Devon",location:"Studio",caption:"A tiny prototype became a real weekend project.",image:"https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=85"},
+{id:"ambiguous",user:"ana.r",name:"Ana",location:"Lake house",caption:"Remembering my mother today.",image:"https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=1000&q=85"}
+];
