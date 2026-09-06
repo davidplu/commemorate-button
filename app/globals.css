@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #191817;
+  --muted: #716d69;
+  --line: #e8e3dd;
+  --paper: #fbfaf8;
+  --accent: #7d2942;
+  --accent-soft: #f5e8ec;
+}
+
+* { box-sizing: border-box; }
+html { background: var(--paper); }
+body { margin: 0; color: var(--ink); background: radial-gradient(circle at 50% -20%, #fff 0, var(--paper) 42rem); font-family: Arial, Helvetica, sans-serif; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button { font: inherit; }
+::selection { background: #ead1d9; }
