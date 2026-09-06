@@ -1,0 +1,22 @@
+import { classifier, type ClassificationLabel } from "./classifier";
+export type TestCase = { text: string; expected: ClassificationLabel; category: string };
+
+const memorial = [
+  ["My grandfather passed away last night. I miss him more than words. Rest easy, Grandpa.","family"], ["We lost our mom this morning. I miss her already. Rest in peace.","family"], ["My father passed away this week. Forever in our hearts.","family"], ["My sister died last night after her illness. I miss her so much.","family"], ["We lost our dear brother today. Rest easy. We miss him.","family"], ["My grandmother passed away last night. I miss her laugh. Rest in peace.","family"], ["My uncle died this morning after a long illness. We miss him.","family"], ["We lost our aunt today. Rest easy, we miss her.","family"], ["My husband passed away last night. Forever in my heart. I miss him.","family"], ["My wife passed away this morning. I miss her beyond words. Rest easy.","family"], ["My friend died last night. I miss him dearly. Rest in peace.","friend"], ["We lost our best friend this morning. We miss her. Rest easy.","friend"], ["My dog passed away last night. I miss him. Rest easy, Max.","pet"], ["We lost our cat this morning after 18 years. I miss her already.","pet"], ["My pet died last night. Forever in our hearts. Rest in peace.","pet"], ["Three years without Mom today. I miss her laugh and everything she taught me.","anniversary"], ["A year without Dad today. I miss him every day. Rest easy.","anniversary"], ["Five years without my sister. Forever in our hearts. I miss her.","anniversary"], ["In loving memory of my grandmother, who passed away last night. We miss her.","remembrance"], ["We lost our grandfather today. In loving memory; rest in peace.","remembrance"]
+].map(([text,category]) => ({text,category,expected:"memorial" as const}));
+const ordinaryTexts = ["Fresh powder and empty lifts.","Graduated today!","Best pasta in town.","Golden hour over Tahoe.","Max learned a new trick.","Building something new this weekend.","Dinner with friends.","First marathon finished.","The garden is finally blooming.","Coffee and a good book.","Road trip starts now.","A quiet morning by the lake.","Finished my latest coding project.","Sunday match with the team.","New apartment, new chapter.","Made bread from scratch.","Sunset from the summit.","Museum afternoon.","Happy birthday to my sister.","Concert night!"];
+const ordinary = ordinaryTexts.map((text) => ({text,expected:"ordinary" as const,category:"ordinary"}));
+const difficultTexts = ["RIP my GPA after that calculus exam 💀","My phone died halfway through the hike.","Tony Stark's death still gets me every time.","This workout absolutely killed me.","RIP to my sleep schedule.","We're studying death imagery in Hamlet.","I'm dead 😂","My battery died during the concert.","That final episode killed me.","RIP my wifi.","The character's death changed the movie.","A history class about death in medieval Europe.","News reports that a celebrity died today.","Game of Thrones has so much death.","Our playoff hopes died tonight.","Dead tired after training.","This joke killed me lol.","The flowers died in the frost.","RIP to my weekend plans.","Shakespeare uses death imagery throughout Hamlet."];
+const difficult = difficultTexts.map((text) => ({text,expected:"ordinary" as const,category:"adversarial"}));
+const ambiguous: TestCase[] = [
+  { text:"Thinking of Grandpa today and all our summers together.", expected:"ordinary", category:"ambiguous" },
+  { text:"We lost Max today after 14 amazing years.", expected:"ambiguous", category:"ambiguous" },
+  { text:"Sending love to my friend after the loss of her dad.", expected:"ordinary", category:"condolence" },
+  { text:"Remembering my mother today.", expected:"ambiguous", category:"ambiguous" }
+];
+export const testCases: TestCase[] = [...memorial, ...ordinary, ...difficult, ...ambiguous];
+export function calculateMetrics(cases: TestCase[] = testCases) {
+  let tp=0, tn=0, fp=0, fn=0;
+  for (const item of cases) { const predicted = classifier.classify(item.text).label === "memorial"; const actual = item.expected === "memorial"; if(predicted&&actual)tp++; else if(predicted&&!actual)fp++; else if(!predicted&&actual)fn++; else tn++; }
+  return { total: cases.length, tp, tn, fp, fn, accuracy:(tp+tn)/cases.length, precision:tp/(tp+fp||1), recall:tp/(tp+fn||1), falsePositiveRate:fp/(fp+tn||1) };
+}
